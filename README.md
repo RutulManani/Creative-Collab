@@ -111,7 +111,7 @@ We are designing wireframes for the following:
 - Fitness Progress Tracker  
 - “Gift Store” for redeeming rewards  
 
-👉 **[View Wireframes](#)** *(Insert PNG or Figma link here)*
+👉 **[View Wireframes](https://github.com/RutulManani/Creative-Collab/blob/main/Dashboard.png)**
 
 ---
 
