@@ -1,0 +1,24 @@
+﻿@model GiftelleCMSbackend.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="card-grid">
+    <div class="dashboard-card">
+        <h2>@Model.TotalVendors</h2>
+        <p>Total Vendors</p>
+    </div>
+    <div class="dashboard-card">
+        <h2>@Model.TotalProducts</h2>
+        <p>Total Products</p>
+    </div>
+    <div class="dashboard-card">
+        <h2>@Model.TotalOrders</h2>
+        <p>Total Orders</p>
+    </div>
+    <div class="dashboard-card">
+        <h2>@Model.TotalOrderItems</h2>
+        <p>Total Order Items</p>
+    </div>
+</div>

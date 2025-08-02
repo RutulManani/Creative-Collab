@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GiftelleCMSbackend.Models.OrderItem>
+
+@{
+    ViewData["Title"] = "Order Items";
+}
+
+<h1 class="mb-4">Order Items</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Order Item</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+        <tr>
+            <th>Order</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4" class="text-center text-muted">No order items found.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Order?.CustomerName ?? "—"</td>
+                    <td>@item.Product?.Name ?? "—"</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.OrderItemId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.OrderItemId" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.OrderItemId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
