@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GiftelleCMSbackend.Models.Vendor>
+
+@{
+    ViewData["Title"] = "Vendors";
+}
+
+<h2>Vendors</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">➕ Create New Vendor</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().ContactEmail)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.ContactEmail</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.VendorId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.VendorId" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.VendorId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
