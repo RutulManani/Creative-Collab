@@ -1,4 +1,4 @@
-namespace GiftelleCMSbackend.Models
+namespace EduFitMart.Models
 {
     public class ErrorViewModel
     {

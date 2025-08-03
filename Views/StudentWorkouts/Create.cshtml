@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EduFitMart.Models.Fitness.Workout>
+
+@{
+    ViewData["Title"] = "Add Workout to Student";
+    var studentId = ViewBag.StudentId;
+    var studentName = ViewBag.StudentName;
+}
+
+<h1>Add Workout to @studentName</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Workout Name</th>
+                <th>Date</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var workout in Model)
+            {
+                <tr>
+                    <td>@workout.Name</td>
+                    <td>@workout.Date.ToShortDateString()</td>
+                    <td>@workout.Duration minutes</td>
+                    <td>
+                        <form asp-action="Create" method="post">
+                            <input type="hidden" name="studentId" value="@studentId" />
+                            <input type="hidden" name="workoutId" value="@workout.WorkoutId" />
+                            <button type="submit" class="btn btn-success">Add</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No available workouts to add</div>
+}
+
+<div>
+    <a asp-controller="Students" asp-action="Details" asp-route-id="@studentId" class="btn btn-secondary">Back to Student</a>
+</div>

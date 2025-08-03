@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using GiftelleCMSbackend.Data;
-using GiftelleCMSbackend.Models;
+using Microsoft.EntityFrameworkCore;
+using EduFitMart.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace GiftelleCMSbackend.Controllers
+namespace EduFitMart.Controllers
 {
     public class HomeController : Controller
     {
@@ -14,17 +15,26 @@ namespace GiftelleCMSbackend.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var model = new DashboardViewModel
+            var stats = new
             {
-                TotalVendors = _context.Vendor.Count(),
-                TotalProducts = _context.Products.Count(),
-                TotalOrders = _context.Orders.Count(),
-                TotalOrderItems = _context.OrderItems.Count()
+                TotalStudents = await _context.Students.CountAsync(),
+                TotalCourses = await _context.Courses.CountAsync(),
+                TotalWorkouts = await _context.Workouts.CountAsync(),
+                TotalOrders = await _context.Orders.CountAsync(),
+                RecentStudents = await _context.Students
+                    .OrderByDescending(s => s.StudentId)
+                    .Take(5)
+                    .ToListAsync(),
+                RecentOrders = await _context.Orders
+                    .Include(o => o.Student)
+                    .OrderByDescending(o => o.OrderDate)
+                    .Take(5)
+                    .ToListAsync()
             };
 
-            return View(model);
+            return View(stats);
         }
     }
 }

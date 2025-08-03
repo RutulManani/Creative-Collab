@@ -1,24 +1,116 @@
-﻿@model GiftelleCMSbackend.Models.DashboardViewModel
-
-@{
-    ViewData["Title"] = "Dashboard";
+﻿@{
+    ViewData["Title"] = "Home Page";
 }
 
-<div class="card-grid">
-    <div class="dashboard-card">
-        <h2>@Model.TotalVendors</h2>
-        <p>Total Vendors</p>
+<div class="text-center mb-4">
+    <h1 class="display-4">Welcome to EduFitMart</h1>
+    <p class="lead">Integrated platform for education, fitness, and rewards</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Students</h5>
+                <p class="card-text display-4">@ViewBag.TotalStudents</p>
+                <a asp-controller="Students" asp-action="Index" class="btn btn-light">View All</a>
+            </div>
+        </div>
     </div>
-    <div class="dashboard-card">
-        <h2>@Model.TotalProducts</h2>
-        <p>Total Products</p>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Courses</h5>
+                <p class="card-text display-4">@ViewBag.TotalCourses</p>
+                <a asp-controller="Courses" asp-action="Index" class="btn btn-light">View All</a>
+            </div>
+        </div>
     </div>
-    <div class="dashboard-card">
-        <h2>@Model.TotalOrders</h2>
-        <p>Total Orders</p>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">Workouts</h5>
+                <p class="card-text display-4">@ViewBag.TotalWorkouts</p>
+                <a asp-controller="Workouts" asp-action="Index" class="btn btn-light">View All</a>
+            </div>
+        </div>
     </div>
-    <div class="dashboard-card">
-        <h2>@Model.TotalOrderItems</h2>
-        <p>Total Order Items</p>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">Orders</h5>
+                <p class="card-text display-4">@ViewBag.TotalOrders</p>
+                <a asp-controller="Orders" asp-action="Index" class="btn btn-light">View All</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5>Recent Students</h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentStudents != null && ViewBag.RecentStudents.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var student in ViewBag.RecentStudents)
+                        {
+                            <li class="list-group-item">
+                                <a asp-controller="Students" asp-action="Details" asp-route-id="@student.StudentId">
+                                    @student.Name
+                                </a>
+                                <span class="text-muted float-end">@student.Email</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No recent students</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>Recent Orders</h5>
+            </div>
+            <div class="card-body">
+                @if (ViewBag.RecentOrders != null && ViewBag.RecentOrders.Count > 0)
+                {
+                    <ul class="list-group">
+                        @foreach (var order in ViewBag.RecentOrders)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Order #@order.OrderId</strong>
+                                    <br />
+                                    <small>@order.OrderDate.ToShortDateString()</small>
+                                </div>
+                                <div>
+                                    @if (order.Student != null)
+                                    {
+                                        <span>@order.Student.Name</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@order.CustomerName</span>
+                                    }
+                                </div>
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-sm btn-info">View</a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No recent orders</p>
+                }
+            </div>
+        </div>
     </div>
 </div>

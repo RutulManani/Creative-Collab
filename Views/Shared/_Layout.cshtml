@@ -3,86 +3,67 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GiftelleCMSbackend</title>
+    <title>@ViewData["Title"] - EduFitMart</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GiftelleCMSbackend.styles.css" asp-append-version="true" />
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-        .main-content {
-            flex: 1;
-            display: flex;
-        }
-        .sidebar {
-            width: 220px;
-            background-color: #343a40;
-            color: #fff;
-            padding: 20px;
-        }
-        .sidebar a {
-            color: #adb5bd;
-            display: block;
-            margin: 10px 0;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        .content-area {
-            flex-grow: 1;
-            padding: 20px;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        .dashboard-card {
-            padding: 1.25rem;
-            border-radius: 8px;
-            background: #f8f9fa;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .dashboard-card h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="~/EduFitMart.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="main-content">
-        <aside class="sidebar">
-            <h4>GiftelleCMS</h4>
-            <nav>
-                <a asp-controller="Home" asp-action="Index">Dashboard</a>
-                <a asp-controller="Vendors" asp-action="Index">Vendors</a>
-                <a asp-controller="Products" asp-action="Index">Products</a>
-                <a asp-controller="Orders" asp-action="Index">Orders</a>
-                <a asp-controller="OrderItems" asp-action="Index">Order Items</a>
-            </nav>
-        </aside>
-
-        <div class="content-area">
-            <header class="mb-4">
-                <h1 class="display-5">Dashboard</h1>
-            </header>
-
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EduFitMart</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                School
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Students" asp-action="Index">Students</a></li>
+                                <li><a class="dropdown-item" asp-controller="Courses" asp-action="Index">Courses</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Fitness
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="Index">Workouts</a></li>
+                                <li><a class="dropdown-item" asp-controller="Exercises" asp-action="Index">Exercises</a></li>
+                                <li><a class="dropdown-item" asp-controller="Equipment" asp-action="Index">Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                E-Commerce
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" asp-controller="Orders" asp-action="Index">Orders</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Products</a></li>
+                                <li><a class="dropdown-item" asp-controller="Vendors" asp-action="Index">Vendors</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
             @RenderBody()
-        </div>
+        </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center py-3">
+    <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - GiftelleCMSbackend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - EduFitMart - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

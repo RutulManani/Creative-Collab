@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GiftelleCMSbackend.Data;
-using GiftelleCMSbackend.Models;
+using EduFitMart.Data;
+using EduFitMart.Models.ECommerce;
 
-namespace GiftelleCMSbackend.Controllers
+namespace EduFitMart.Controllers
 {
     public class OrdersController : Controller
     {
@@ -18,62 +18,95 @@ namespace GiftelleCMSbackend.Controllers
         public async Task<IActionResult> Index()
         {
             var orders = await _context.Orders
+                .Include(o => o.Student)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                 .ToListAsync();
-
             return View(orders);
         }
 
         // GET: Orders/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             var order = await _context.Orders
+                .Include(o => o.Student)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
-                .FirstOrDefaultAsync(o => o.OrderId == id);
+                .FirstOrDefaultAsync(m => m.OrderId == id);
 
             if (order == null)
-                return NotFound();
-
-            return View(order);
-        }
-
-        // GET: Orders/Create
-        public IActionResult Create() => View();
-
-        // POST: Orders/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Order order)
-        {
-            if (ModelState.IsValid)
             {
-                _context.Orders.Add(order);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
             return View(order);
         }
 
-        // GET: Orders/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        // GET: Orders/Create
+        public IActionResult Create(int? studentId)
         {
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
-                return NotFound();
+            if (studentId != null)
+            {
+                ViewBag.StudentId = studentId;
+                ViewBag.StudentName = _context.Students.Find(studentId)?.Name;
+            }
+            ViewBag.Products = _context.Products.ToList();
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("OrderId,OrderDate,CustomerName,StudentId")] Order order, int[] selectedProducts)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(order);
+                await _context.SaveChangesAsync();
+
+                foreach (var productId in selectedProducts)
+                {
+                    _context.OrderItems.Add(new OrderItem
+                    {
+                        OrderId = order.OrderId,
+                        ProductId = productId,
+                        Quantity = 1
+                    });
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             return View(order);
         }
 
-        // POST: Orders/Edit/5
+        // GET: Orders/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return View(order);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,OrderDate,CustomerName,StudentId")] Order order)
         {
             if (id != order.OrderId)
+            {
                 return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -84,45 +117,45 @@ namespace GiftelleCMSbackend.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(id))
+                    if (!OrderExists(order.OrderId))
+                    {
                         return NotFound();
+                    }
                     else
+                    {
                         throw;
+                    }
                 }
-
                 return RedirectToAction(nameof(Index));
+            }
+            return View(order);
+        }
+
+        // GET: Orders/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+            if (order == null)
+            {
+                return NotFound();
             }
 
             return View(order);
         }
 
-        // GET: Orders/Delete/5
-        public async Task<IActionResult> Delete(int id)
-        {
-            var order = await _context.Orders
-                .Include(o => o.OrderItems)
-                    .ThenInclude(oi => oi.Product)
-                .FirstOrDefaultAsync(o => o.OrderId == id);
-
-            if (order == null)
-                return NotFound();
-
-            return View(order);
-        }
-
-        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var order = await _context.Orders.FindAsync(id);
-
-            if (order == null)
-                return NotFound();
-
             _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
         }
 

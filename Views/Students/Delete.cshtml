@@ -1,0 +1,34 @@
+﻿@model EduFitMart.Models.School.Student
+
+@{
+    ViewData["Title"] = "Delete Student";
+}
+
+<h1>Delete Student</h1>
+
+<div class="alert alert-danger">
+    <h3>Are you sure you want to delete this student?</h3>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">@Model.Name</h4>
+        <dl class="row">
+            <dt class="col-sm-2">Email</dt>
+            <dd class="col-sm-10">@Model.Email</dd>
+            <dt class="col-sm-2">Courses</dt>
+            <dd class="col-sm-10">@Model.Enrollments.Count</dd>
+            <dt class="col-sm-2">Workouts</dt>
+            <dd class="col-sm-10">@Model.StudentWorkouts.Count</dd>
+            <dt class="col-sm-2">Orders</dt>
+            <dd class="col-sm-10">@Model.Orders.Count</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="StudentId" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

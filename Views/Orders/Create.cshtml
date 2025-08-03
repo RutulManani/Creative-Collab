@@ -1,26 +1,66 @@
-﻿@model GiftelleCMSbackend.Models.Order
+﻿@model EduFitMart.Models.ECommerce.Order
 
 @{
     ViewData["Title"] = "Create Order";
+    var products = ViewBag.Products as List<EduFitMart.Models.ECommerce.Product>;
 }
 
 <h1>Create Order</h1>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="CustomerName" class="control-label"></label>
-        <input asp-for="CustomerName" class="form-control" />
-        <span asp-validation-for="CustomerName" class="text-danger"></span>
-    </div>
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="form-group">
-        <label asp-for="OrderDate" class="control-label"></label>
-        <input asp-for="OrderDate" class="form-control" type="date" />
-        <span asp-validation-for="OrderDate" class="text-danger"></span>
-    </div>
+            @if (ViewBag.StudentId != null)
+            {
+                <div class="form-group">
+                    <label class="control-label">Student</label>
+                    <input type="hidden" asp-for="StudentId" value="@ViewBag.StudentId" />
+                    <input class="form-control" value="@ViewBag.StudentName" readonly />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label"></label>
+                    <select asp-for="StudentId" class="form-control" asp-items="ViewBag.Students">
+                        <option value="">-- Select Student --</option>
+                    </select>
+                </div>
+            }
 
-    <div class="form-group mt-3">
-        <input type="submit" value="Create" class="btn btn-primary" />
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            <div class="form-group">
+                <label asp-for="CustomerName" class="control-label"></label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Products</label>
+                <div class="border p-3">
+                    @foreach (var product in products)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="selectedProducts" value="@product.ProductId" id="product_@product.ProductId" />
+                            <label class="form-check-label" for="product_@product.ProductId">
+                                @product.Name - @product.Price.ToString("C")
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
     </div>
-</form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

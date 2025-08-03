@@ -1,115 +1,6 @@
 [
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrderItemsApiController",
-    "Method": "GetOrderItems",
-    "RelativePath": "api/OrderItemsApi",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GiftelleCMSbackend.DTOs.OrderItemDTO, GiftelleCMSbackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrderItemsApiController",
-    "Method": "CreateOrderItem",
-    "RelativePath": "api/OrderItemsApi",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "GiftelleCMSbackend.DTOs.OrderItemDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "GiftelleCMSbackend.DTOs.OrderItemDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrderItemsApiController",
-    "Method": "GetOrderItem",
-    "RelativePath": "api/OrderItemsApi/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "GiftelleCMSbackend.DTOs.OrderItemDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrderItemsApiController",
-    "Method": "UpdateOrderItem",
-    "RelativePath": "api/OrderItemsApi/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "dto",
-        "Type": "GiftelleCMSbackend.DTOs.OrderItemDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrderItemsApiController",
-    "Method": "DeleteOrderItem",
-    "RelativePath": "api/OrderItemsApi/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrdersApiController",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
     "Method": "GetOrders",
     "RelativePath": "api/OrdersApi",
     "HttpMethod": "GET",
@@ -118,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[OrderDTO, GiftelleCMSbackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.ECommerce.Order, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -129,22 +20,22 @@
     ]
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrdersApiController",
-    "Method": "CreateOrder",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
+    "Method": "PostOrder",
     "RelativePath": "api/OrdersApi",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "orderDto",
-        "Type": "OrderDTO",
+        "Name": "order",
+        "Type": "EduFitMart.Models.ECommerce.Order",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "OrderDTO",
+        "Type": "EduFitMart.Models.ECommerce.Order",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -155,7 +46,7 @@
     ]
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrdersApiController",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
     "Method": "GetOrder",
     "RelativePath": "api/OrdersApi/{id}",
     "HttpMethod": "GET",
@@ -170,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "OrderDTO",
+        "Type": "EduFitMart.Models.ECommerce.Order",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -181,8 +72,8 @@
     ]
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrdersApiController",
-    "Method": "UpdateOrder",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
+    "Method": "PutOrder",
     "RelativePath": "api/OrdersApi/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -194,15 +85,15 @@
         "IsRequired": true
       },
       {
-        "Name": "orderDto",
-        "Type": "OrderDTO",
+        "Name": "order",
+        "Type": "EduFitMart.Models.ECommerce.Order",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.OrdersApiController",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
     "Method": "DeleteOrder",
     "RelativePath": "api/OrdersApi/{id}",
     "HttpMethod": "DELETE",
@@ -218,55 +109,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.ProductsApiController",
-    "Method": "GetProducts",
-    "RelativePath": "api/ProductsApi",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProductDTO, GiftelleCMSbackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.ProductsApiController",
-    "Method": "CreateProduct",
-    "RelativePath": "api/ProductsApi",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "productDto",
-        "Type": "ProductDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ProductDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.ProductsApiController",
-    "Method": "GetProduct",
-    "RelativePath": "api/ProductsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
+    "Method": "GetOrderProducts",
+    "RelativePath": "api/OrdersApi/{id}/products",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -279,7 +124,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "ProductDTO",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.ECommerce.Product, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -290,9 +135,123 @@
     ]
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.ProductsApiController",
-    "Method": "UpdateProduct",
-    "RelativePath": "api/ProductsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
+    "Method": "AddProductToOrder",
+    "RelativePath": "api/OrdersApi/{orderId}/products/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.OrdersApiController",
+    "Method": "RemoveProductFromOrder",
+    "RelativePath": "api/OrdersApi/{orderId}/products/{productId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "GetStudents",
+    "RelativePath": "api/StudentsApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.School.Student, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "PostStudent",
+    "RelativePath": "api/StudentsApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "student",
+        "Type": "EduFitMart.Models.School.Student",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduFitMart.Models.School.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "GetStudent",
+    "RelativePath": "api/StudentsApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduFitMart.Models.School.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "PutStudent",
+    "RelativePath": "api/StudentsApi/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -303,17 +262,17 @@
         "IsRequired": true
       },
       {
-        "Name": "productDto",
-        "Type": "ProductDTO",
+        "Name": "student",
+        "Type": "EduFitMart.Models.School.Student",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.ProductsApiController",
-    "Method": "DeleteProduct",
-    "RelativePath": "api/ProductsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "DeleteStudent",
+    "RelativePath": "api/StudentsApi/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -327,55 +286,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.VendorsApiController",
-    "Method": "GetVendors",
-    "RelativePath": "api/VendorsApi",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[VendorDTO, GiftelleCMSbackend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.VendorsApiController",
-    "Method": "CreateVendor",
-    "RelativePath": "api/VendorsApi",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "vendorDto",
-        "Type": "VendorDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "VendorDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GiftelleCMSbackend.Controllers.VendorsApiController",
-    "Method": "GetVendor",
-    "RelativePath": "api/VendorsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.StudentsApiController",
+    "Method": "GetStudentCourses",
+    "RelativePath": "api/StudentsApi/{id}/courses",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -388,7 +301,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "VendorDTO",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.School.Course, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -399,9 +312,81 @@
     ]
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.VendorsApiController",
-    "Method": "UpdateVendor",
-    "RelativePath": "api/VendorsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "GetWorkouts",
+    "RelativePath": "api/WorkoutsApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.Fitness.Workout, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "PostWorkout",
+    "RelativePath": "api/WorkoutsApi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workout",
+        "Type": "EduFitMart.Models.Fitness.Workout",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduFitMart.Models.Fitness.Workout",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "GetWorkout",
+    "RelativePath": "api/WorkoutsApi/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EduFitMart.Models.Fitness.Workout",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "PutWorkout",
+    "RelativePath": "api/WorkoutsApi/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -412,23 +397,91 @@
         "IsRequired": true
       },
       {
-        "Name": "vendorDto",
-        "Type": "VendorDTO",
+        "Name": "workout",
+        "Type": "EduFitMart.Models.Fitness.Workout",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GiftelleCMSbackend.Controllers.VendorsApiController",
-    "Method": "DeleteVendor",
-    "RelativePath": "api/VendorsApi/{id}",
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "DeleteWorkout",
+    "RelativePath": "api/WorkoutsApi/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "GetWorkoutExercises",
+    "RelativePath": "api/WorkoutsApi/{id}/exercises",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EduFitMart.Models.Fitness.Exercise, EduFitMart, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "AddExerciseToWorkout",
+    "RelativePath": "api/WorkoutsApi/{workoutId}/exercises/{exerciseId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workoutId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "exerciseId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EduFitMart.Controllers.Api.WorkoutsApiController",
+    "Method": "RemoveExerciseFromWorkout",
+    "RelativePath": "api/WorkoutsApi/{workoutId}/exercises/{exerciseId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workoutId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "exerciseId",
         "Type": "System.Int32",
         "IsRequired": true
       }
