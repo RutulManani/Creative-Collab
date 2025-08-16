@@ -1,26 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EduFitMart.Data;
-using EduFitMart.Models.School;
+using EduFitMart.Models.ECommerce;
 
 namespace EduFitMart.Controllers
 {
-    public class StudentsController : Controller
+    public class VendorsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentsController(ApplicationDbContext context)
+        public VendorsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Students
+        // GET: Vendors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            return View(await _context.Vendors.ToListAsync());
         }
 
-        // GET: Students/Details/5
+        // GET: Vendors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -28,41 +33,39 @@ namespace EduFitMart.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .Include(s => s.Enrollments)
-                .Include(s => s.StudentWorkouts)
-                    .ThenInclude(sw => sw.Workout)
-                .Include(s => s.Orders)
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-
-            if (student == null)
+            var vendor = await _context.Vendors
+                .FirstOrDefaultAsync(m => m.VendorId == id);
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(vendor);
         }
 
-        // GET: Students/Create
+        // GET: Vendors/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        // POST: Vendors/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,Name,Email")] Student student)
+        public async Task<IActionResult> Create([Bind("VendorId,Name,ContactEmail")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
+                _context.Add(vendor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(vendor);
         }
 
-        // GET: Students/Edit/5
+        // GET: Vendors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -70,19 +73,22 @@ namespace EduFitMart.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
+            var vendor = await _context.Vendors.FindAsync(id);
+            if (vendor == null)
             {
                 return NotFound();
             }
-            return View(student);
+            return View(vendor);
         }
 
+        // POST: Vendors/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,Name,Email")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("VendorId,Name,ContactEmail")] Vendor vendor)
         {
-            if (id != student.StudentId)
+            if (id != vendor.VendorId)
             {
                 return NotFound();
             }
@@ -91,12 +97,12 @@ namespace EduFitMart.Controllers
             {
                 try
                 {
-                    _context.Update(student);
+                    _context.Update(vendor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentId))
+                    if (!VendorExists(vendor.VendorId))
                     {
                         return NotFound();
                     }
@@ -107,10 +113,10 @@ namespace EduFitMart.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(student);
+            return View(vendor);
         }
 
-        // GET: Students/Delete/5
+        // GET: Vendors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -118,33 +124,34 @@ namespace EduFitMart.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
+            var vendor = await _context.Vendors
+                .FirstOrDefaultAsync(m => m.VendorId == id);
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            return View(student);
+            return View(vendor);
         }
 
+        // POST: Vendors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var student = await _context.Students.FindAsync(id);
-            if (student != null)
+            var vendor = await _context.Vendors.FindAsync(id);
+            if (vendor != null)
             {
-                _context.Students.Remove(student);
-                await _context.SaveChangesAsync();
+                _context.Vendors.Remove(vendor);
             }
 
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentExists(int id)
+        private bool VendorExists(int id)
         {
-            return _context.Students.Any(e => e.StudentId == id);
+            return _context.Vendors.Any(e => e.VendorId == id);
         }
     }
 }

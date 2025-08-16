@@ -8,8 +8,8 @@
 </div>
 
 <div class="row mb-4">
-    <div class="col-md-3">
-        <div class="card text-white bg-primary">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
             <div class="card-body">
                 <h5 class="card-title">Students</h5>
                 <p class="card-text display-4">@ViewBag.TotalStudents</p>
@@ -17,17 +17,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-success">
-            <div class="card-body">
-                <h5 class="card-title">Courses</h5>
-                <p class="card-text display-4">@ViewBag.TotalCourses</p>
-                <a asp-controller="Courses" asp-action="Index" class="btn btn-light">View All</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-info">
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
             <div class="card-body">
                 <h5 class="card-title">Workouts</h5>
                 <p class="card-text display-4">@ViewBag.TotalWorkouts</p>
@@ -35,8 +26,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-warning">
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
             <div class="card-body">
                 <h5 class="card-title">Orders</h5>
                 <p class="card-text display-4">@ViewBag.TotalOrders</p>
@@ -55,21 +46,21 @@
             <div class="card-body">
                 @if (ViewBag.RecentStudents != null && ViewBag.RecentStudents.Count > 0)
                 {
-                    <ul class="list-group">
-                        @foreach (var student in ViewBag.RecentStudents)
+                <ul class="list-group">
+                    @foreach (var student in ViewBag.RecentStudents)
                         {
-                            <li class="list-group-item">
-                                <a asp-controller="Students" asp-action="Details" asp-route-id="@student.StudentId">
-                                    @student.Name
-                                </a>
-                                <span class="text-muted float-end">@student.Email</span>
-                            </li>
+                    <li class="list-group-item">
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@student.StudentId">
+                            @student.Name
+                        </a>
+                        <span class="text-muted float-end">@student.Email</span>
+                    </li>
                         }
-                    </ul>
+                </ul>
                 }
                 else
                 {
-                    <p>No recent students</p>
+                <p>No recent students</p>
                 }
             </div>
         </div>
@@ -82,33 +73,32 @@
             <div class="card-body">
                 @if (ViewBag.RecentOrders != null && ViewBag.RecentOrders.Count > 0)
                 {
-                    <ul class="list-group">
-                        @foreach (var order in ViewBag.RecentOrders)
+                <ul class="list-group">
+                    @foreach (var order in ViewBag.RecentOrders)
                         {
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>Order #@order.OrderId</strong>
-                                    <br />
-                                    <small>@order.OrderDate.ToShortDateString()</small>
-                                </div>
-                                <div>
-                                    @if (order.Student != null)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Order #@order.OrderId</strong><br />
+                            <small>@order.OrderDate.ToShortDateString()</small>
+                        </div>
+                        <div>
+                            @if (order.Student != null)
                                     {
-                                        <span>@order.Student.Name</span>
+                            <span>@order.Student.Name</span>
                                     }
                                     else
                                     {
-                                        <span>@order.CustomerName</span>
+                            <span>@order.CustomerName</span>
                                     }
-                                </div>
-                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-sm btn-info">View</a>
-                            </li>
+                        </div>
+                        <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-sm btn-info">View</a>
+                    </li>
                         }
-                    </ul>
+                </ul>
                 }
                 else
                 {
-                    <p>No recent orders</p>
+                <p>No recent orders</p>
                 }
             </div>
         </div>

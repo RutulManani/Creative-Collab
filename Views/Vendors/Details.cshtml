@@ -1,0 +1,21 @@
+﻿@model EduFitMart.Models.ECommerce.Vendor
+
+@{
+    ViewData["Title"] = "Vendor Details";
+}
+
+<h1>Vendor Details</h1>
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Contact Email</dt>
+    <dd class="col-sm-9">@Model.ContactEmail</dd>
+</dl>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.VendorId" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

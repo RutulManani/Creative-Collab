@@ -93,23 +93,6 @@ namespace EduFitMart.Controllers.Api
             return NoContent();
         }
 
-        // GET: api/StudentsApi/5/courses
-        [HttpGet("{id}/courses")]
-        public async Task<ActionResult<IEnumerable<Course>>> GetStudentCourses(int id)
-        {
-            var student = await _context.Students
-                .Include(s => s.Enrollments)
-                    .ThenInclude(e => e.Course)
-                .FirstOrDefaultAsync(s => s.StudentId == id);
-
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(student.Enrollments.Select(e => e.Course));
-        }
-
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.StudentId == id);

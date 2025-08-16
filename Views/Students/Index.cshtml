@@ -1,34 +1,30 @@
 ﻿@model IEnumerable<EduFitMart.Models.School.Student>
 
-@{
+    @{
     ViewData["Title"] = "Students";
-}
+    }
 
-<h1>Students</h1>
+    <h1>Students</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Email)</th>
-            <th>Courses</th>
-            <th>Workouts</th>
-            <th>Orders</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>Workouts</th>
+                <th>Orders</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>
-                    <span class="badge bg-primary">@item.Enrollments.Count</span>
-                </td>
                 <td>
                     <span class="badge bg-success">@item.StudentWorkouts.Count</span>
                 </td>
@@ -42,5 +38,5 @@
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>

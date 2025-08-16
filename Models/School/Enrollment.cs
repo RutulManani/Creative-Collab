@@ -1,5 +1,4 @@
-﻿// Models/School/Enrollment.cs
-namespace EduFitMart.Models.School
+﻿namespace EduFitMart.Models.School
 {
     public class Enrollment
     {

@@ -1,9 +1,6 @@
-﻿// Data/ApplicationDbContext.cs
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using EduFitMart.Models;
-using System.Numerics;
-// Add these using directives at the top of ApplicationDbContext.cs
 using EduFitMart.Models.School;
 using EduFitMart.Models.Fitness;
 using EduFitMart.Models.ECommerce;
@@ -18,7 +15,6 @@ namespace EduFitMart.Data
 
         // School Management Entities
         public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
 
         // Fitness Tracker Entities
@@ -44,11 +40,6 @@ namespace EduFitMart.Data
                 .HasOne(e => e.Student)
                 .WithMany(s => s.Enrollments)
                 .HasForeignKey(e => e.StudentId);
-
-            modelBuilder.Entity<Enrollment>()
-                .HasOne(e => e.Course)
-                .WithMany(c => c.Enrollments)
-                .HasForeignKey(e => e.CourseId);
 
             // Fitness Tracker Relationships
             modelBuilder.Entity<ExerciseEquipment>()
@@ -116,5 +107,6 @@ namespace EduFitMart.Data
                 .WithMany(s => s.Orders)
                 .HasForeignKey(o => o.StudentId);
         }
+        public DbSet<EduFitMart.Models.School.Course> Course { get; set; } = default!;
     }
 }

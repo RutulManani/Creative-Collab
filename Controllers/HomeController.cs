@@ -17,24 +17,22 @@ namespace EduFitMart.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var stats = new
-            {
-                TotalStudents = await _context.Students.CountAsync(),
-                TotalCourses = await _context.Courses.CountAsync(),
-                TotalWorkouts = await _context.Workouts.CountAsync(),
-                TotalOrders = await _context.Orders.CountAsync(),
-                RecentStudents = await _context.Students
-                    .OrderByDescending(s => s.StudentId)
-                    .Take(5)
-                    .ToListAsync(),
-                RecentOrders = await _context.Orders
-                    .Include(o => o.Student)
-                    .OrderByDescending(o => o.OrderDate)
-                    .Take(5)
-                    .ToListAsync()
-            };
+            ViewBag.TotalStudents = await _context.Students.CountAsync();
+            ViewBag.TotalWorkouts = await _context.Workouts.CountAsync();
+            ViewBag.TotalOrders = await _context.Orders.CountAsync();
 
-            return View(stats);
+            ViewBag.RecentStudents = await _context.Students
+                .OrderByDescending(s => s.StudentId)
+                .Take(5)
+                .ToListAsync();
+
+            ViewBag.RecentOrders = await _context.Orders
+                .Include(o => o.Student)
+                .OrderByDescending(o => o.OrderDate)
+                .Take(5)
+                .ToListAsync();
+
+            return View();
         }
     }
 }
